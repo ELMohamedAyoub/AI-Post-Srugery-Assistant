@@ -1,27 +1,43 @@
-🗂️ Folder Details
-app/
-This folder contains the application code for the chatbot. It includes:
+# RL-Chatbot-Assistant
 
-templates/: HTML templates for rendering the web interface.
-static/: Static assets like CSS, JavaScript, and images.
-__init__.py: Initializes the Flask application.
-routes.py: Defines API routes to handle requests and responses.
-chatbot.py: Logic to integrate the RL model with the chatbot interface.
-model/
-This folder contains all files related to the reinforcement learning agent:
+A reinforcement learning-based chatbot assistant designed to support post-surgery patients by providing medication reminders, motivational support, and emotional check-ins.
 
-rl_environment.py: A custom environment simulating patient interactions.
-rl_agent.py: Reinforcement learning agent implementation using algorithms like Q-Learning.
-train_agent.py: Script for training the RL model.
-saved_model.pkl: Serialized file of the trained RL agent.
-data/
-Stores data used for training and evaluation:
+---
 
-user_sessions.csv: Logs of patient-chatbot interactions.
-feedback.csv: Patient feedback for improving the chatbot.
-tests/
-Unit and integration tests:
+## 📂 Project Structure
 
-test_environment.py: Tests for the custom RL environment.
-test_agent.py: Validation of the RL agent's behavior.
-test_routes.py: Integration testing of API routes.
+### **Main Folders and Files**
+
+```plaintext
+RL-Chatbot-Assistant/
+│
+├── app/                   # Core application logic
+│   ├── templates/         # HTML templates (for Flask web app)
+│   │   └── index.html     # Main chatbot interface
+│   ├── static/            # Static assets for web UI
+│   │   ├── css/           # Stylesheets
+│   │   ├── js/            # JavaScript files
+│   │   └── img/           # Images and icons
+│   ├── __init__.py        # Flask app initializer
+│   ├── routes.py          # API routes for chatbot interaction
+│   └── chatbot.py         # Chatbot logic interface for RL agent
+│
+├── model/                 # Machine learning and RL models
+│   ├── rl_environment.py  # Custom Gym environment for RL training
+│   ├── rl_agent.py        # RL agent implementation
+│   ├── train_agent.py     # Training script for the RL agent
+│   └── saved_model.pkl    # Trained model saved for use
+│
+├── data/                  # Data storage and logging
+│   ├── user_sessions.csv  # Interaction logs for training insights
+│   └── feedback.csv       # Patient feedback for improving the agent
+│
+├── tests/                 # Test cases for validation
+│   ├── test_environment.py  # Unit tests for RL environment
+│   ├── test_agent.py        # Unit tests for RL agent
+│   └── test_routes.py       # Integration tests for Flask routes
+│
+├── main.py                # Entry point to run the application
+├── requirements.txt       # Python dependencies
+└── README.md              # Project documentation
+```
