@@ -64,15 +64,15 @@ Development Steps
 Environment Setup
 
 Create a virtual environment:
-bash
-Copy code
+```
 python -m venv venv
 source venv/bin/activate   # For Linux/Mac
 venv\Scripts\activate      # For Windows
+```
 Install dependencies:
-bash
-Copy code
+```
 pip install numpy
+```
 Define the RL Environment
 
 Create a class RehabEnv to simulate the patient's recovery state and define possible actions the chatbot can take.
