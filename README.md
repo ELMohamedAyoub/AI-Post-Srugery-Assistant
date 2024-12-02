@@ -37,8 +37,8 @@ Use a virtual environment (e.g., venv or Conda) to manage dependencies.
 File Structure
 We will organize the project as follows:
 
-plaintext
-Copy code
+
+```
 RL-Chatbot-Assistant/
 │
 ├── env/                   # Custom environment for RL
@@ -59,6 +59,7 @@ RL-Chatbot-Assistant/
 │
 ├── requirements.txt       # Python dependencies
 └── README.md              # Project documentation
+```
 Development Steps
 Environment Setup
 
