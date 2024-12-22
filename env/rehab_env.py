@@ -1,16 +1,36 @@
 import numpy as np
+import pandas as pd
 
 class RehabEnv:
-    def __init__(self):
+    def __init__(self, dataset_path):
         self.state = np.array([0, 0, 0])  # Mood, Adherence, Engagement
         self.done = False
         self.thresholds = {"mood": 10, "adherence": 8, "engagement": 7}
+        self.df = pd.read_parquet(dataset_path)
 
     def reset(self):
         """Resets the environment to the initial state."""
         self.done = False
         self.state = np.array([0, 0, 0])  # Reset state
         return self.state
+
+    def get_feedback(self, action):
+        """
+        Simulate feedback based on the action.
+        Filters the dataset for a relevant response and uses it to update states.
+        """
+        actions_map = {
+            0: "medication reminder",
+            1: "emotional support",
+            2: "appointment reminder",
+            3: "surgery FAQ"
+        }
+        action_text = actions_map[action]
+
+        for index, row in self.df.iterrows():
+            if action_text.lower() in row['Patient'].lower():
+                return row['Doctor']
+        return "No specific response found."
 
     def step(self, action):
         """
@@ -23,6 +43,8 @@ class RehabEnv:
         adherence_change = 0
         engagement_change = 0
 
+        # Modify reward/state changes based on the dataset's feedback.
+        feedback = self.get_feedback(action)
         if action == 0:  # Medication Reminder
             adherence_change = 1
             reward = 2 if self.state[1] < 10 else 0
@@ -45,4 +67,4 @@ class RehabEnv:
             self.done = True
             reward += 5  # Bonus reward for completing all goals
 
-        return self.state, reward, self.done
+        return self.state, reward, self.done, feedback

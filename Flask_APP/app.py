@@ -14,11 +14,24 @@ import random
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+#from datasets import load_dataset
+#import datasets
 
+#from datasets import load_dataset
 app = Flask(__name__, template_folder="../Templates")
 
 # Load NLP model for feedback parsing
 nlp = spacy.load("en_core_web_sm")
+
+# Load the AI Medical Chatbot Dataset
+#dataset = load_dataset("ruslanmv/ai-medical-chatbot")
+#datasets.set_caching_enabled(False)
+#datasets.utils.logging.set_verbosity_debug()
+
+
+
+df = pd.read_parquet("hf://datasets/ruslanmv/ai-medical-chatbot/dialogues.parquet")
+
 
 # Medication schedule (the times should ideally come from the patient's profile)
 medication_schedule = {
@@ -99,7 +112,7 @@ def respond_to_mood(feedback, mood_state):
 
 def send_alert_email(patient_id, heart_rate, blood_pressure, temperature, spo2):
     """Send an alert email to the doctor if the patient's vitals are critical."""
-    sender_email = ""
+    sender_email = "your_email@example.com"
     receiver_email = "doctor_email@example.com"
     password = "your_email_password"
 
@@ -127,8 +140,15 @@ def send_alert_email(patient_id, heart_rate, blood_pressure, temperature, spo2):
     except Exception as e:
         print(f"Error sending email: {e}")
 
+def get_response(query):
+    """Get a response from the AI Medical Chatbot Dataset based on the query."""
+    for index, row in df.iterrows():
+        if query.lower() in row['Patient'].lower():
+            return row['Doctor']
+    return "I'm sorry, I don't have information on that."
+
 @app.route('/')
-def index():    
+def index():
     return render_template('index.html')
 
 @app.route('/feedback', methods=['POST'])
@@ -144,7 +164,7 @@ def feedback():
     temperature = round(random.uniform(36.5, 37.5), 1)
     spo2 = random.randint(95, 100)
 
-    return render_template('feedback.html', patient_id=patient_id, heart_rate=heart_rate, blood_pressure=blood_pressure, temperature=temperature, spo2=spo2)
+    return render_template('feedback.html', patient_id=patient_id, patient_name=patient['name'], surgery_type=patient['surgery_type'], doctor_name=patient['doctor_name'], heart_rate=heart_rate, blood_pressure=blood_pressure, temperature=temperature, spo2=spo2)
 
 @app.route('/chat', methods=['POST'])
 def chat():
@@ -160,7 +180,8 @@ def chat():
         return "Patient profile not found!", 404
 
     # Initialize environment and agent
-    env = RehabEnv()
+    env = RehabEnv("data/dialogues.parquet")
+    agent = RLAgent(state_size=3, action_size=4)
     state = env.reset().astype(int)
 
     agent = RLAgent(state_size=3, action_size=4)
@@ -211,7 +232,10 @@ def chat():
         send_alert_email(patient_id, heart_rate, blood_pressure, temperature, spo2)
         chatbot_response = "Your vitals are critical. An alert has been sent to your doctor."
 
-    return render_template('feedback.html', patient_id=patient_id, heart_rate=heart_rate, blood_pressure=blood_pressure, temperature=temperature, spo2=spo2, chatbot_response=chatbot_response, mood_response=mood_response, appointment_reminder=appointment_reminder)
+    # Get additional response from the dataset
+    additional_response = get_response(feedback)
+
+    return render_template('feedback.html', patient_id=patient_id, patient_name=patient['name'], surgery_type=patient['surgery_type'], doctor_name=patient['doctor_name'], heart_rate=heart_rate, blood_pressure=blood_pressure, temperature=temperature, spo2=spo2, chatbot_response=chatbot_response, mood_response=mood_response, appointment_reminder=appointment_reminder, additional_response=additional_response)
 
 @app.route('/appointment')
 def appointment():
