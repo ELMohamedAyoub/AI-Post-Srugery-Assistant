@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Appointment</title>
+    <style>
+        body {
+            display: flex;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #f4f4f4;
+            padding: 15px;
+        }
+        .content {
+            flex: 1;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/appointment">Next Appointment</a></li>
+            <li><a href="/recommendations">Recommendations</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <h1>Next Appointment</h1>
+        <p>Your next appointment is on {{ appointment_date }}.</p>
+    </div>
+</body>
+</html>
