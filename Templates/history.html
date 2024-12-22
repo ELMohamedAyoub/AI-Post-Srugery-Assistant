@@ -1,0 +1,30 @@
+<!-- Templates/history.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vital Signs History</title>
+</head>
+<body>
+    <h1>Vital Signs History</h1>
+    <table>
+        <tr>
+            <th>Timestamp</th>
+            <th>Heart Rate</th>
+            <th>Blood Pressure</th>
+            <th>Temperature</th>
+            <th>SpO2</th>
+        </tr>
+        {% for entry in history %}
+        <tr>
+            <td>{{ entry['timestamp'] }}</td>
+            <td>{{ entry['heart_rate'] }}</td>
+            <td>{{ entry['blood_pressure'] }}</td>
+            <td>{{ entry['temperature'] }}</td>
+            <td>{{ entry['spo2'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

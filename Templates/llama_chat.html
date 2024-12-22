@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post-Surgery Chatbot</title>
+    <title>Llama Chat</title>
     <style>
         body {
             display: flex;
@@ -43,16 +43,35 @@
             <li><a href="/appointment">Next Appointment</a></li>
             <li><a href="/recommendations/{{ patient_id }}">Recommendations</a></li>
             <li><a href="/feedback">Patient Feedback</a></li>
-            <li><a href="/doctor_dashboard">Doctor's Dashboard</a></li>
+            <li><a href="/llama_chat_ui">Llama Chat</a></li>
         </ul>
     </div>
     <div class="content">
-        <h1>Welcome to the Post-Surgery Chatbot</h1>
-        <form action="/feedback" method="post">
-            <label for="patient_id">Patient ID:</label>
-            <input type="text" id="patient_id" name="patient_id" required><br><br>
-            <button type="submit">Submit</button>
+        <h1>Llama Chat</h1>
+        <form id="llama-chat-form">
+            <label for="user-input">Your Message:</label>
+            <input type="text" id="user-input" name="input" required><br><br>
+            <button type="submit">Send</button>
         </form>
+        <div id="response"></div>
     </div>
+    <script>
+        document.getElementById('llama-chat-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const userInput = document.getElementById('user-input').value;
+            const responseDiv = document.getElementById('response');
+
+            const response = await fetch('/llama_chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ input: userInput })
+            });
+
+            const data = await response.json();
+            responseDiv.innerHTML = `<p>${data.response}</p>`;
+        });
+    </script>
 </body>
 </html>

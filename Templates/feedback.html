@@ -17,6 +17,20 @@
             flex: 1;
             padding: 15px;
         }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -24,12 +38,17 @@
         <h2>Menu</h2>
         <ul>
             <li><a href="/">Home</a></li>
+            <li><a href="/dashboard/{{ patient_id }}">Dashboard</a></li>
+            <li><a href="/history/{{ patient_id }}">History</a></li>
             <li><a href="/appointment">Next Appointment</a></li>
-            <li><a href="/recommendations">Recommendations</a></li>
+            <li><a href="/recommendations/{{ patient_id }}">Recommendations</a></li>
+            <li><a href="/feedback">Patient Feedback</a></li>
         </ul>
     </div>
     <div class="content">
         <h1>Patient Feedback</h1>
+        <h2>Patient: {{ patient_name }}</h2>
+        <h3>Surgery Type: {{ surgery_type }}</h3>
         <form action="/chat" method="post">
             <input type="hidden" name="patient_id" value="{{ patient_id }}">
             <label for="feedback">How do you feel?</label>
@@ -52,6 +71,19 @@
                 <p>{{ appointment_reminder }}</p>
             {% endif %}
         {% endif %}
+        <h2>Recommendations</h2>
+        <ul>
+            <li>Stay hydrated and drink plenty of water.</li>
+            <li>Get enough rest and sleep.</li>
+            <li>Keep up with your physical therapy exercises.</li>
+            <li>Contact your healthcare provider if you have any concerns.</li>
+            <li>Practice deep breathing to reduce stress.</li>
+            <li>Track your vital signs regularly.</li>
+            <li>Eat a balanced diet to support your healing process.</li>
+            <li>Follow your doctor's advice closely.</li>
+            <li>Reach out to a friend or family member for support if you're feeling down.</li>
+            <li>Report any unusual symptoms to your doctor.</li>
+        </ul>
     </div>
 </body>
 </html>

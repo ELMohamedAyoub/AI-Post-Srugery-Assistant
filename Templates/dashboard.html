@@ -1,0 +1,39 @@
+<!-- Templates/dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Welcome, {{ patient['name'] }}</h1>
+
+    <h2>Medication Schedule</h2>
+    <p>{{ medication_message }}</p>
+
+    <h2>Upcoming Appointments</h2>
+    <p>{{ appointment_reminder }}</p>
+
+    <h2>Vital Signs History</h2>
+    <table>
+        <tr>
+            <th>Timestamp</th>
+            <th>Heart Rate</th>
+            <th>Blood Pressure</th>
+            <th>Temperature</th>
+            <th>SpO2</th>
+        </tr>
+        {% for entry in history %}
+        <tr>
+            <td>{{ entry['timestamp'] }}</td>
+            <td>{{ entry['heart_rate'] }}</td>
+            <td>{{ entry['blood_pressure'] }}</td>
+            <td>{{ entry['temperature'] }}</td>
+            <td>{{ entry['spo2'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

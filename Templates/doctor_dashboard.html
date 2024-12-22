@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor's Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Doctor's Dashboard</h1>
+    <h2>Patient Profiles</h2>
+    <table>
+        <tr>
+            <th>Patient ID</th>
+            <th>Name</th>
+            <th>Surgery Type</th>
+            <th>Next Appointment</th>
+        </tr>
+        {% for profile in profiles %}
+        <tr>
+            <td>{{ profile['patient_id'] }}</td>
+            <td>{{ profile['name'] }}</td>
+            <td>{{ profile['surgery_type'] }}</td>
+            <td>{{ profile['appointment_date'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Vital Signs History</h2>
+    <table>
+        <tr>
+            <th>Patient ID</th>
+            <th>Timestamp</th>
+            <th>Heart Rate</th>
+            <th>Blood Pressure</th>
+            <th>Temperature</th>
+            <th>SpO2</th>
+        </tr>
+        {% for entry in history %}
+        <tr>
+            <td>{{ entry['patient_id'] }}</td>
+            <td>{{ entry['timestamp'] }}</td>
+            <td>{{ entry['heart_rate'] }}</td>
+            <td>{{ entry['blood_pressure'] }}</td>
+            <td>{{ entry['temperature'] }}</td>
+            <td>{{ entry['spo2'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

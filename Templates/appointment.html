@@ -17,6 +17,20 @@
             flex: 1;
             padding: 15px;
         }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -24,8 +38,11 @@
         <h2>Menu</h2>
         <ul>
             <li><a href="/">Home</a></li>
+            <li><a href="/dashboard/{{ patient_id }}">Dashboard</a></li>
+            <li><a href="/history/{{ patient_id }}">History</a></li>
             <li><a href="/appointment">Next Appointment</a></li>
             <li><a href="/recommendations">Recommendations</a></li>
+            <li><a href="/feedback">Patient Feedback</a></li>
         </ul>
     </div>
     <div class="content">
