@@ -8,15 +8,14 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from env.rehab_env import RehabEnv
 from agent.rl_agent import RLAgent
 import pickle
-import transformers
 
-# Load environment and dataset
-env = RehabEnv("hf://datasets/ruslanmv/ai-medical-chatbot/dialogues.parquet")
+# Initialize environment and agent
+env = RehabEnv()
 agent = RLAgent(state_size=3, action_size=4)
 
 # Training parameters
 num_episodes = 100
-checkpoint_interval = 10
+checkpoint_interval = 10  # Save the Q-table every 10 episodes
 
 for episode in range(1, num_episodes + 1):
     state = env.reset().astype(int)
@@ -24,11 +23,8 @@ for episode in range(1, num_episodes + 1):
 
     while not env.done:
         action = agent.act(state)
-        next_state, reward, done, feedback = env.step(action)
+        next_state, reward, done = env.step(action)
         total_reward += reward
-
-        # Print patient feedback
-        print(f"Patient feedback: {feedback}")
 
         # Update the Q-table
         agent.learn(state, action, reward, next_state)
@@ -46,4 +42,3 @@ for episode in range(1, num_episodes + 1):
 with open("q_table.pkl", "wb") as f:
     pickle.dump(agent.q_table, f)
 print("Training complete. Final Q-table saved to q_table.pkl.")
-

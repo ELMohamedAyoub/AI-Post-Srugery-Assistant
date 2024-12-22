@@ -1,4 +1,4 @@
-patient_id,name,age,surgery_type,medication_schedule,appointment_date,doctor_name
-1,John,45,Knee Surgery,"9:00 AM, 9:00 PM","2024-12-15",Dr. Smith
-2,Sara,30,Hip Surgery,"8:00 AM, 8:00 PM","2024-12-18",Dr. Brown
-3,SaadELMIR,23,Emotional Surgery,"8:00 AM, 8:00 PM","2024-12-3",Dr. Brown
+patient_id,name,age,surgery_type,medication_schedule,appointment_date
+1,John,45,Knee Surgery,"9:00 AM, 9:00 PM","2024-12-15"
+2,Sara,30,Hip Surgery,"8:00 AM, 8:00 PM","2024-12-18"
+3,SaadELMIR,23,Emotional Surgery,"8:00 AM, 8:00 PM","2024-12-3"

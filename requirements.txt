@@ -3,7 +3,3 @@ pytest
 matplotlib
 spacy
 pandas
-fsspec
-transformers
-python -m spacy download en_core_web_sm
-
