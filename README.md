@@ -1,5 +1,3 @@
-Based on the information gathered, here is a professional `README.md` for the Flask-Version branch of your AI-Project repository:
-
 ---
 
 # AI Project - Flask Version
