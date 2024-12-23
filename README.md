@@ -126,5 +126,3 @@ For any questions or inquiries, please contact the project maintainer:
 - GitHub: [ELMohamedAyoub](https://github.com/ELMohamedAyoub)
 
 ---
-
-Feel free to customize this template further to fit your project's specific needs. Let me know if you need any more information or modifications!
