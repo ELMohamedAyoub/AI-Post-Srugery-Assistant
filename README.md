@@ -1,91 +1,132 @@
-Project Overview
-Objective
-We are building a Reinforcement Learning (RL) chatbot assistant for post-surgery rehabilitation patients. The chatbot will provide:
+Based on the information gathered, here is a professional `README.md` for the Flask-Version branch of your AI-Project repository:
 
-Medication Reminders: Notify patients about taking their prescribed medications.
-Emotional Support: Offer motivational messages to boost the patient’s mood.
-Appointment Reminders: Inform patients about upcoming medical appointments.
-FAQ Answers: Provide answers to frequently asked questions (e.g., knee surgery recovery).
-Phase 1: Terminal-Based Chatbot
-We will first create a basic version of the chatbot that runs in the terminal. This version will use RL to adapt and improve responses based on patient interactions.
+---
 
-Phase 2: Flask Web Application
-Once the terminal version is complete, we will extend it to a Flask-based web application with a user-friendly interface.
+# AI Project - Flask Version
 
-Steps to Build the Terminal-Based Chatbot
-1. Define the Project Environment
-Simulate the interaction as an environment where:
-State Variables: Represent the patient's mood, medication adherence, and engagement level.
-Actions: Represent the chatbot's possible responses (e.g., medication reminder, emotional support).
-2. Build the RL Agent
-Use a simple RL algorithm like Q-Learning:
-The agent will learn the best actions to take based on the patient's current state.
-A Q-table will store the agent's learned behavior.
-3. Train the Chatbot
-Train the RL agent using simulated patient responses to ensure the chatbot adapts and improves over time.
-4. Build a Terminal-Based Interface
-Create a simple terminal interface to allow patients to interact with the chatbot.
-Simulate user feedback (e.g., "How do you feel?") to update the chatbot's state.
-Project Requirements
-Technical Requirements
-Programming Language: Python 3.8 or above
-Libraries:
-numpy for numerical operations.
-pytest for testing (optional but recommended).
-Development Environment:
-Use a virtual environment (e.g., venv or Conda) to manage dependencies.
-File Structure
-We will organize the project as follows:
+This repository is designed for the project we will be doing in the AI class, focusing on developing a Flask-based web application for a Reinforcement Learning (RL) chatbot assistant for post-surgery rehabilitation patients.
 
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Technologies Used](#technologies-used)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+
+## Introduction
+
+Welcome to the Flask Version of the AI Project. This project aims to build a Reinforcement Learning (RL) chatbot assistant to help post-surgery rehabilitation patients with medication reminders, emotional support, appointment reminders, and answers to frequently asked questions.
+
+## Technologies Used
+
+- **Python**: The primary programming language used for developing the AI models and scripts.
+- **Flask**: A micro web framework for Python to develop the web application.
+- **HTML**: Used for creating web interfaces to interact with the AI models.
+- **Jupyter Notebook**: For interactive data exploration and visualization.
+- **Libraries**:
+  - `numpy`: For numerical operations.
+  - `pytest`: For testing.
+  - `matplotlib`: For plotting and visualization.
+  - `spacy`: For natural language processing.
+  - `pandas`: For data manipulation and analysis.
+
+## Project Structure
+
+The repository is organized as follows:
 
 ```
-RL-Chatbot-Assistant/
-│
+AI-Project/
 ├── env/                   # Custom environment for RL
 │   └── rehab_env.py       # Simulates patient-chatbot interactions
-│
 ├── agent/                 # RL agent implementation
 │   ├── rl_agent.py        # Q-learning agent
 │   └── train_agent.py     # Training script
-│
 ├── app/                   # Terminal interface
 │   └── terminal_chatbot.py # Main terminal-based chatbot code
-│
 ├── data/                  # Placeholder for patient interaction data
 │   └── user_sessions.csv  # Logs of interactions (future use)
-│
 ├── tests/                 # Unit tests
 │   └── test_agent.py      # Validate RL agent
-│
 ├── requirements.txt       # Python dependencies
 └── README.md              # Project documentation
 ```
-Development Steps
-Environment Setup
 
-Create a virtual environment:
-```
-python -m venv venv
-source venv/bin/activate   # For Linux/Mac
-venv\Scripts\activate      # For Windows
-```
-Install dependencies:
-```
-pip install numpy
-```
-Define the RL Environment
+## Installation
 
-Create a class RehabEnv to simulate the patient's recovery state and define possible actions the chatbot can take.
-Build the RL Agent
+To get started with the project, follow these steps:
 
-Develop a RLAgent class to implement Q-learning logic.
-Train the Agent
+1. Clone the repository:
 
-Write a train_agent.py script to train the RL agent in the environment.
-Create the Terminal Interface
+   ```sh
+   git clone https://github.com/ELMohamedAyoub/AI-Project.git
+   ```
 
-Develop a terminal_chatbot.py script to enable user interaction with the chatbot.
-Test and Debug
+2. Navigate to the project directory:
 
-Test the agent and environment for logical errors.
-Adjust reward mechanisms and actions to better suit patient scenarios.
+   ```sh
+   cd AI-Project
+   ```
+
+3. Create a virtual environment:
+
+   ```sh
+   python -m venv venv
+   source venv/bin/activate   # For Linux/Mac
+   venv\Scripts\activate      # For Windows
+   ```
+
+4. Install the required dependencies:
+
+   ```sh
+   pip install -r requirements.txt
+   ```
+
+5. Download the Spacy language model:
+
+   ```sh
+   python -m spacy download en_core_web_sm
+   ```
+
+## Usage
+
+After installing the necessary dependencies, you can start using the project. Below are some common commands:
+
+1. Run the terminal-based chatbot:
+
+   ```sh
+   python app/terminal_chatbot.py
+   ```
+
+2. Open the Jupyter Notebooks:
+
+   ```sh
+   jupyter notebook
+   ```
+
+## Contributing
+
+We welcome contributions to this project. To contribute, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes and commit them (`git commit -m 'Add new feature'`).
+4. Push to the branch (`git push origin feature-branch`).
+5. Open a Pull Request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Contact
+
+For any questions or inquiries, please contact the project maintainer:
+
+- GitHub: [ELMohamedAyoub](https://github.com/ELMohamedAyoub)
+
+---
+
+Feel free to customize this template further to fit your project's specific needs. Let me know if you need any more information or modifications!
