@@ -6,30 +6,107 @@
     <title>Patient Feedback</title>
     <style>
         body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
             display: flex;
         }
         .sidebar {
-            width: 200px;
-            background-color: #f4f4f4;
-            padding: 15px;
+            width: 250px;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 20px;
+            height: 100vh;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
         }
-        .content {
-            flex: 1;
-            padding: 15px;
+        .sidebar h2 {
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 24px;
         }
-        ul {
+        .sidebar ul {
             list-style-type: none;
             padding: 0;
         }
-        li {
-            margin: 10px 0;
+        .sidebar li {
+            margin: 15px 0;
         }
-        a {
+        .sidebar a {
             text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+        }
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .content h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .content h2, .content h3 {
+            color: #555;
+            margin-top: 20px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        form label {
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: block;
             color: #333;
         }
-        a:hover {
-            text-decoration: underline;
+        form input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        form button {
+            background-color: #007BFF;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #0056b3;
+        }
+        .recommendations {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .recommendations ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .recommendations li {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .chatbot-response {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e1f5fe;
+            border-radius: 8px;
         }
     </style>
 </head>
@@ -43,6 +120,8 @@
             <li><a href="/appointment">Next Appointment</a></li>
             <li><a href="/recommendations/{{ patient_id }}">Recommendations</a></li>
             <li><a href="/feedback">Patient Feedback</a></li>
+            <li><a href="/doctor_dashboard">Doctor's Dashboard</a></li>
+            <li><a href="/ragchat">AIchat</a></li>
         </ul>
     </div>
     <div class="content">
@@ -63,27 +142,33 @@
             <input type="number" id="spo2" name="spo2" value="{{ spo2 }}"><br><br>
             <button type="submit">Submit</button>
         </form>
+        
         {% if chatbot_response %}
-            <h2>Chatbot Response</h2>
-            <p>{{ chatbot_response }}</p>
-            <p>{{ mood_response }}</p>
-            {% if appointment_reminder %}
-                <p>{{ appointment_reminder }}</p>
-            {% endif %}
+            <div class="chatbot-response">
+                <h2>Chatbot Response</h2>
+                <p>{{ chatbot_response }}</p>
+                <p>{{ mood_response }}</p>
+                {% if appointment_reminder %}
+                    <p>{{ appointment_reminder }}</p>
+                {% endif %}
+            </div>
         {% endif %}
-        <h2>Recommendations</h2>
-        <ul>
-            <li>Stay hydrated and drink plenty of water.</li>
-            <li>Get enough rest and sleep.</li>
-            <li>Keep up with your physical therapy exercises.</li>
-            <li>Contact your healthcare provider if you have any concerns.</li>
-            <li>Practice deep breathing to reduce stress.</li>
-            <li>Track your vital signs regularly.</li>
-            <li>Eat a balanced diet to support your healing process.</li>
-            <li>Follow your doctor's advice closely.</li>
-            <li>Reach out to a friend or family member for support if you're feeling down.</li>
-            <li>Report any unusual symptoms to your doctor.</li>
-        </ul>
+
+        <div class="recommendations">
+            <h2>Recommendations</h2>
+            <ul>
+                <li>Stay hydrated and drink plenty of water.</li>
+                <li>Get enough rest and sleep.</li>
+                <li>Keep up with your physical therapy exercises.</li>
+                <li>Contact your healthcare provider if you have any concerns.</li>
+                <li>Practice deep breathing to reduce stress.</li>
+                <li>Track your vital signs regularly.</li>
+                <li>Eat a balanced diet to support your healing process.</li>
+                <li>Follow your doctor's advice closely.</li>
+                <li>Reach out to a friend or family member for support if you're feeling down.</li>
+                <li>Report any unusual symptoms to your doctor.</li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>

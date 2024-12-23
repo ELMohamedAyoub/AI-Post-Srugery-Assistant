@@ -1,30 +1,119 @@
-<!-- Templates/history.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vital Signs History</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 20px;
+            height: 100vh;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 24px;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar li {
+            margin: 15px 0;
+        }
+        .sidebar a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+        }
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .content h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007BFF;
+            color: #fff;
+            font-size: 18px;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        .content .table-container {
+            max-width: 100%;
+            overflow-x: auto;
+        }
+    </style>
 </head>
 <body>
-    <h1>Vital Signs History</h1>
-    <table>
-        <tr>
-            <th>Timestamp</th>
-            <th>Heart Rate</th>
-            <th>Blood Pressure</th>
-            <th>Temperature</th>
-            <th>SpO2</th>
-        </tr>
-        {% for entry in history %}
-        <tr>
-            <td>{{ entry['timestamp'] }}</td>
-            <td>{{ entry['heart_rate'] }}</td>
-            <td>{{ entry['blood_pressure'] }}</td>
-            <td>{{ entry['temperature'] }}</td>
-            <td>{{ entry['spo2'] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/dashboard/{{ patient_id }}">Dashboard</a></li>
+            <li><a href="/history/{{ patient_id }}">History</a></li>
+            <li><a href="/appointment">Next Appointment</a></li>
+            <li><a href="/recommendations">Recommendations</a></li>
+            <li><a href="/feedback">Patient Feedback</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <h1>Vital Signs History</h1>
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Heart Rate</th>
+                    <th>Blood Pressure</th>
+                    <th>Temperature</th>
+                    <th>SpO2</th>
+                </tr>
+                {% for entry in history %}
+                <tr>
+                    <td>{{ entry['timestamp'] }}</td>
+                    <td>{{ entry['heart_rate'] }}</td>
+                    <td>{{ entry['blood_pressure'] }}</td>
+                    <td>{{ entry['temperature'] }}</td>
+                    <td>{{ entry['spo2'] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
 </body>
 </html>
