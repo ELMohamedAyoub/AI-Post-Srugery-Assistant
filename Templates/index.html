@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post-Surgery Chatbot</title>
+    <!-- Google Fonts for Enhanced Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            background-color: #ffffff;
+            color: #333333;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 280px;
+            background-color: #0D47A1; /* Deep Blue */
+            color: #FFFFFF;
+            padding: 30px 20px;
+            height: 100vh;
+            box-shadow: 2px 0px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 40px;
+            text-align: center;
+            font-family: 'Merriweather', serif;
+            font-size: 26px;
+            letter-spacing: 1px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+        }
+
+        .sidebar li {
+            margin: 20px 0;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #FFFFFF;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            color: #FFD700; /* Gold Accent */
+        }
+
+        /* Content Area Styling */
+        .content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            background: linear-gradient(135deg, #e0f7fa 0%, #ffffff 100%);
+        }
+
+        .content h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 36px;
+            color: #0D47A1;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .content form {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .content label {
+            font-size: 18px;
+            margin-bottom: 8px;
+            display: block;
+            color: #0D47A1;
+            font-weight: 500;
+        }
+
+        .content input {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+
+        .content input:focus {
+            border-color: #0D47A1;
+            outline: none;
+            box-shadow: 0 0 5px rgba(13, 71, 161, 0.5);
+        }
+
+        .content button {
+            width: 100%;
+            padding: 12px;
+            background-color: #0D47A1;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .content button:hover {
+            background-color: #1565C0;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                flex-direction: row;
+                align-items: center;
+                padding: 20px;
+            }
+
+            .sidebar h2 {
+                margin-bottom: 0;
+                font-size: 20px;
+            }
+
+            .sidebar ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .sidebar li {
+                margin: 10px 15px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .content h1 {
+                font-size: 28px;
+            }
+
+            .content form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div>
+            <h2>Medical Menu</h2>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/dashboard/{{ patient_id }}">Dashboard</a></li>
+                <li><a href="/history/{{ patient_id }}">History</a></li>
+                <li><a href="/appointment">Next Appointment</a></li>
+                <li><a href="/recommendations/{{ patient_id }}">Recommendations</a></li>
+                <li><a href="/feedback">Patient Feedback</a></li>
+                <li><a href="/doctor_dashboard">Doctor's Dashboard</a></li>
+                <li><a href="/ragchat">AI Chat</a></li>
+            </ul>
+        </div>
+        <div>
+            <p style="text-align:center; font-size:14px; opacity:0.8;">© 2024 Medical App</p>
+        </div>
+    </div>
+    <div class="content">
+        <h1>Welcome to the Post-Surgery Chatbot</h1>
+        <form action="/feedback" method="post">
+            <label for="patient_id">Patient ID:</label>
+            <input type="text" id="patient_id" name="patient_id" placeholder="Enter your Patient ID" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

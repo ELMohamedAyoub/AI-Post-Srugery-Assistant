@@ -1,0 +1,240 @@
+<!-- Templates/next_appointment.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Appointment</title>
+    <!-- Google Fonts for Enhanced Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrQkTy1Q5yV1qNR1A0YbFb4V8D4qN8uD2P6zj3IC0U2E+XppFV3E7wqE6sH68X7mWYxjP2XbWcZrB1fZ3Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            background-color: #ffffff;
+            color: #333333;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 280px;
+            background-color: #0D47A1; /* Deep Blue */
+            color: #FFFFFF;
+            padding: 30px 20px;
+            height: 100vh;
+            box-shadow: 2px 0px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 40px;
+            text-align: center;
+            font-family: 'Merriweather', serif;
+            font-size: 26px;
+            letter-spacing: 1px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+        }
+
+        .sidebar li {
+            margin: 20px 0;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #FFFFFF;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar a i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .sidebar a:hover {
+            color: #FFD700; /* Gold Accent */
+        }
+
+        /* Content Area Styling */
+        .content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            background: linear-gradient(135deg, #e0f7fa 0%, #ffffff 100%);
+        }
+
+        .content h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 36px;
+            color: #0D47A1;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Appointment Card Styling */
+        .appointment-card {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .appointment-card h2 {
+            font-family: 'Merriweather', serif;
+            font-size: 24px;
+            color: #0D47A1;
+            margin-bottom: 20px;
+        }
+
+        .appointment-card p {
+            font-size: 18px;
+            color: #555555;
+            margin-bottom: 20px;
+        }
+
+        .appointment-card .appointment-details {
+            font-size: 20px;
+            color: #333333;
+            margin-bottom: 30px;
+        }
+
+        .appointment-card .action-button {
+            background-color: #0D47A1;
+            color: #FFFFFF;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .appointment-card .action-button i {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+
+        .appointment-card .action-button:hover {
+            background-color: #1565C0;
+            transform: translateY(-2px);
+        }
+
+        /* Footer Styling (Optional) */
+        .content .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #666666;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                flex-direction: row;
+                align-items: center;
+                padding: 20px;
+            }
+
+            .sidebar h2 {
+                margin-bottom: 0;
+                font-size: 20px;
+            }
+
+            .sidebar ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .sidebar li {
+                margin: 10px 15px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .content h1 {
+                font-size: 28px;
+            }
+
+            .appointment-card {
+                padding: 20px;
+            }
+
+            .appointment-card h2 {
+                font-size: 20px;
+            }
+
+            .appointment-card p, .appointment-card .appointment-details {
+                font-size: 16px;
+            }
+
+            .appointment-card .action-button {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div>
+            <h2>Medical Menu</h2>
+            <ul>
+                <li><a href="/"><i class="fas fa-home"></i>Home</a></li>
+                <li><a href="/dashboard/{{ patient_id }}"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
+                <li><a href="/history/{{ patient_id }}"><i class="fas fa-history"></i>History</a></li>
+                <li><a href="/appointment"><i class="fas fa-calendar-alt"></i>Next Appointment</a></li>
+                <li><a href="/recommendations"><i class="fas fa-heartbeat"></i>Recommendations</a></li>
+                <li><a href="/feedback"><i class="fas fa-comments"></i>Patient Feedback</a></li>
+                <li><a href="/doctor_dashboard"><i class="fas fa-user-md"></i>Doctor's Dashboard</a></li>
+                <li><a href="/ragchat"><i class="fas fa-robot"></i>AI Chat</a></li>
+            </ul>
+        </div>
+        <div>
+            <p style="text-align:center; font-size:14px; opacity:0.8;">© 2024 Medical App</p>
+        </div>
+    </div>
+    <div class="content">
+        <h1>Next Appointment</h1>
+        <div class="appointment-card">
+            <h2>Your Upcoming Appointment</h2>
+            <p class="appointment-details">Your next appointment is scheduled on <strong>{{ appointment_date }}</strong>.</p>
+            <button class="action-button"><i class="fas fa-calendar-check"></i> View Details</button>
+        </div>
+        <div class="footer">
+            <p>For any concerns, please contact your healthcare provider.</p>
+        </div>
+    </div>
+</body>
+</html>
