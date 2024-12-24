@@ -6,30 +6,49 @@
     <title>Next Appointment</title>
     <style>
         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
             display: flex;
+            height: 100vh;
         }
         .sidebar {
-            width: 200px;
+            width: 250px;
             background-color: #f4f4f4;
-            padding: 15px;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         }
-        .content {
-            flex: 1;
-            padding: 15px;
+        .sidebar h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
         }
-        ul {
+        .sidebar ul {
             list-style-type: none;
             padding: 0;
         }
-        li {
-            margin: 10px 0;
+        .sidebar li {
+            margin: 15px 0;
         }
-        a {
+        .sidebar a {
             text-decoration: none;
             color: #333;
+            font-size: 18px;
         }
-        a:hover {
+        .sidebar a:hover {
             text-decoration: underline;
+            color: #0056b3;
+        }
+        .content {
+            flex: 1;
+            padding: 30px;
+        }
+        .content h1 {
+            font-size: 32px;
+            color: #333;
+        }
+        .content p {
+            font-size: 20px;
+            color: #555;
         }
     </style>
 </head>
@@ -47,7 +66,7 @@
     </div>
     <div class="content">
         <h1>Next Appointment</h1>
-        <p>Your next appointment is on {{ appointment_date }}.</p>
+        <p>Your next appointment is on <strong>{{ appointment_date }}</strong>.</p>
     </div>
 </body>
 </html>
